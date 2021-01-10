@@ -47,4 +47,39 @@ public:
     }
 };
 
+//Using One Function
+class Solution {
+public:
+    int removeABorBA(string&s, char c1, char c2)
+    {
+        int cnt = 0;
+        string str;
+        str.push_back('#');
+        int n = (int)s.size();
+        for(int i = 0; i<n; i++)
+        {
+            if(s[i] == c2 && str.back() == c1)
+                cnt++, str.pop_back();
+            else
+                str.push_back(s[i]);
+        }
+        s = str;
+        return cnt;
+    }
+    int maximumGain(string s, int x, int y) {
+        int ans = 0;
+        if(x >= y)
+        {
+            ans += x * removeABorBA(s, 'a', 'b');
+            ans += y * removeABorBA(s, 'b', 'a');
+        }
+        else
+        {
+            ans += y * removeABorBA(s, 'b', 'a');
+            ans += x * removeABorBA(s, 'a', 'b');
+        }
+        return ans;
+    }
+};
+
 

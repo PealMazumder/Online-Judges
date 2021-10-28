@@ -1,0 +1,4 @@
+int a, b, c;
+bool ck1, ck2;
+double d1, d2;
+float f1, f2;

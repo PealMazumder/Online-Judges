@@ -33,28 +33,31 @@ const int N = 1e6+7;
 
 void solve()
 {
-	ll n, m;
-	cin>>n>>m;
+	ll total, ones;
+	cin >> total >> ones;
 
-	ll re = n - m;
-	if(re <= m+1)
+	ll zeros = total - ones;
+	if(zeros <= ones + 1)
 	{
-	    cout<<re<<nl;
+	    cout<<zeros<<nl;
 	    return;
 	}
 
-	ll div = re/(m+1);
-	ll nowre = re % (m+1);
+	ll zero_in_each_seg = zeros / (ones + 1);
+	
+	ll extra_zeros = zeros % (ones + 1); //No of segments going to have extra zeros
 
-	ll divtot = m+1 - nowre;
+	ll seg = ones + 1 - extra_zeros;//No of segments doesn't have extra zeros..... total_seg = ones + 1
 
-	ll ans = (div * (div + 1))/2;
-	ans *= divtot;
+	ll ans = (zero_in_each_seg * (zero_in_each_seg + 1))/2;
+	ans *= seg;
 
-	div++;
+	zero_in_each_seg++;// extra zeros are distributed in segments equally
 
-	ll ans2 = (div * (div + 1))/2;
-	ans2 *= nowre;
+	ll ans2 = (zero_in_each_seg * (zero_in_each_seg + 1))/2;
+	
+	ans2 *= extra_zeros;
+	
     cout<<ans + ans2<<nl;
 
 
